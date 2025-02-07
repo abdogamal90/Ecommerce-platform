@@ -1,0 +1,28 @@
+<div class="container mx-auto px-4 py-8">
+  <h1 class="text-2xl font-bold mb-6">Your Cart</h1>
+
+  <% if @cart_items.any? %>
+    <div class="space-y-4">
+      <% @cart_items.each do |cart_item| %>
+        <div class="flex items-center justify-between border-b pb-4">
+          <div>
+            <h2 class="text-lg font-semibold"><%= cart_item.product.name %></h2>
+            <p class="text-gray-600"><%= number_to_currency(cart_item.product.price) %></p>
+            <p class="text-gray-500">Quantity: <%= cart_item.quantity %></p>
+          </div>
+          <div>
+            <%= button_to "Remove", cart_item_path(cart_item), method: :delete, class: "text-red-600 hover:text-red-800" %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+
+    <div class="mt-6">
+      <p class="text-xl font-bold">
+        Total: <%= number_to_currency(@cart.total_price) %>
+      </p>
+    </div>
+  <% else %>
+    <p class="text-gray-600">Your cart is empty.</p>
+  <% end %>
+</div>

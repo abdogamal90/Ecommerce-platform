@@ -25,6 +25,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_02_07_224647) do
   end
 
   create_table "carts", force: :cascade do |t|
+    t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
