@@ -23,20 +23,20 @@
   </head>
 
   <body>
-    <body>
+      <%= render 'shared/nav' %>
       <div class="container mx-auto px-4">
-        <% if user_signed_in? %>
-          <p>Welcome, <%= current_user.email %>!</p>
-          <%= link_to "Logout", destroy_user_session_path, method: :delete, class: "text-blue-500" %>
-        <% else %>
-          <%= link_to "Login", new_user_session_path, class: "text-blue-500" %>
-          <%= link_to "Sign Up", new_user_registration_path, class: "text-blue-500 ml-4" %>
+        <% if notice %>
+          <div class="bg-green-100 border-l-4 border-green-500 text-green-700 p-4 mb-4 transform transition-all duration-500 ease-in-out translate-y-0 opacity-100" role="alert">
+            <p class="notice"><%= notice %></p>
+          </div>
         <% end %>
-        <hr class="my-4">
-        <p class="notice"><%= notice %></p>
-        <p class="alert"><%= alert %></p>
+
+        <% if alert %>
+          <div class="bg-red-100 border-l-4 border-red-500 text-red-700 p-4 mb-4 transform transition-all duration-500 ease-in-out translate-y-0 opacity-100" role="alert">
+            <p class="alert"><%= alert %></p>
+          </div>
+        <% end %>
         <%= yield %>
       </div>
-</body>
   </body>
 </html>
