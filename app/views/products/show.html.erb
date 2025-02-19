@@ -2,5 +2,7 @@
 <p class="text-gray-600"><%= @product.description %></p>
 <p class="text-green-600 font-bold">$<%= @product.price %></p>
 <p class="text-gray-500">Stock: <%= @product.stock_quantity %></p>
-<%= button_to "Add to Cart", cart_items_path(product_id: @product.id), method: :post, class: "mt-4 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700" %>
-<%= link_to "Back to Products", products_path, class: "text-blue-500" %>
+<div class="flex justify-between">
+    <%= button_to "Add to Cart", cart_items_path(product_id: @product.id), method: :post, class: "mt-4 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700" %>
+    <%= button_to "Back to Products", products_path, class: "mt-4 px-4 py-2 bg-gray-600 text-white rounded hover:bg-gray-700" %>
+</div>

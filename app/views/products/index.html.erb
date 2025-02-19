@@ -1,12 +1,74 @@
-<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-  <h1 class="text-4xl font-extrabold tracking-tight text-gray-900 mb-8">Products</h1>
+<style>
+  .page_info {
+    font-size: 0.875rem;
+  }
+
+  .pagination {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .pagination a {
+    padding: 0.5rem 1rem;
+    border-radius: 0.375rem;
+    background-color: #f3f4f6;
+    color: #4b5563;
+    font-size: 0.875rem;
+    transition: background-color 0.2s;
+  }
+
+  .pagination a:hover {
+    background-color: #e5e7eb;
+  }
+
+  .pagination .previous_page, .pagination .next_page {
+    padding: 0.5rem 1rem;
+    border-radius: 0.375rem;
+    background-color: #f3f4f6;
+    color: #4b5563;
+    font-size: 0.875rem;
+    transition: background-color 0.2s;
+  }
+
+  .pagination .previous_page:hover, .pagination .next_page:hover {
+    background-color: #e5e7eb;
+  }
+
+  .pagination .disabled {
+    cursor: not-allowed;
+    background-color: #e5e7eb;
+    color: #d1d5db;
+  }
+
+  .pagination .active {
+    background-color: #2563eb;
+    color: #ffffff;
+  }
+
+  .pagination .active:hover {
+    background-color: #1d4ed8;
+  }
+
+</style>
+<div class="container mx-auto px-4 py-8">
+  <h1 class="text-4xl font-bold mb-6 text-center">Products</h1>
   
+  <div class="mb-6">
+    <div class="flex justify-between items-center">
+      <div class="page_info text-gray-600">
+        <%= page_entries_info @products %>
+      </div>
+      <div class="pagination">
+        <%= will_paginate @products, container: false, class: "pagination" %>
+      </div>
+    </div>
+  </div>
+
   <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
     <% @products.each do |product| %>
       <div class="group relative bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
         <!-- Assuming you have an image, if not, remove this section -->
-        
-        
         <div class="p-6">
           <h2 class="text-2xl font-bold text-gray-900 mb-2">
             <%= link_to product.name, product_path(product), 
@@ -21,12 +83,17 @@
             <p class="text-2xl font-bold text-indigo-600">
               $<%= number_with_precision(product.price, precision: 2) %>
             </p>
-            
-            <%= link_to "Add to Cart", cart_path(product_id: product.id), 
-                class: "px-4 py-2 bg-indigo-600 text-white font-semibold rounded-lg shadow-md hover:bg-indigo-500 transition-colors duration-200" %>
+             <%= button_to "Add to Cart", cart_items_path(product_id: product.id), 
+                method: :post, class: "px-4 py-2 bg-indigo-600 text-white font-semibold rounded-lg shadow-md hover:bg-indigo-500 transition-colors duration-200" %>
           </div>
         </div>
       </div>
     <% end %>
+  </div>
+
+  <div class="mt-6">
+    <div class="flex justify-center pagination">
+      <%= will_paginate @products, container: false, class: "pagination" %>
+    </div>
   </div>
 </div>

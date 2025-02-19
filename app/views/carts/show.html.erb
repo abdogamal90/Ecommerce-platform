@@ -13,7 +13,7 @@
           
           <%= button_to cart_item_path(cart_item), 
               method: :delete,
-              class: "text-sm font-medium text-red-600 hover:text-red-800" do %>
+              class: "px-4 py-2 bg-indigo-600 text-white font-semibold rounded-lg shadow-md hover:bg-indigo-500" do %>
             Remove
           <% end %>
         </div>
@@ -25,6 +25,18 @@
         Total: <%= number_to_currency(@cart.total_price) %>
       </p>
     </div>
+
+    <div class="flex justify-between">
+      <div class="mt-2" style="margin-top: 1rem;">
+        <%= link_to "Add Products", products_path, class: "px-4 py-2 bg-indigo-600 text-white font-semibold rounded-lg shadow-md hover:bg-indigo-500 transition-colors duration-200" %>
+      </div>
+
+      <div class="mt-2" style="margin-top: 1rem;">
+        <%= link_to "Checkout", checkout_path, class: "px-4 py-2 bg-indigo-600 text-white font-semibold rounded-lg shadow-md hover:bg-indigo-500 transition-colors duration-200" %>
+      </div>
+    </div>
+    
+    
   <% else %>
     <p class="text-gray-600">Your cart is empty.</p>
   <% end %>

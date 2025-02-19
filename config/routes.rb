@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get "checkout/show"
+  get "checkout/create"
 
   devise_for :users
 
@@ -15,4 +17,11 @@ Rails.application.routes.draw do
 
   resources :cart_items, only: [:create, :destroy]
   resource :cart, only: [:show]
+  resources :orders, only: [:index, :show, :create]
+  resource :checkout, only: [:show, :create]
+
+  post '/webhooks/stripe', to: 'webhooks#stripe'
+  get '/checkout/success', to: 'checkouts#success'
+  get '/checkout/cancel', to: 'checkouts#cancel'
+  
 end
