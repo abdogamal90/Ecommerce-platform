@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   devise_for :users
+  resources :users, only: [:index, :edit, :update, :destroy]
   get "checkout/show"
   get "checkout/create"
 
@@ -8,6 +9,7 @@ Rails.application.routes.draw do
   get "cart_items/create"
   get "cart_items/destroy"
   resources :products, only: [:index, :show]
+  resources :wishlist_items, only: [:create, :destroy, :show, :index]
   root "products#index"
 
 

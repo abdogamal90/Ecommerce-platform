@@ -1,0 +1,5 @@
+$("#flash-container").html("<%= j render 'flash' %>");
+
+setTimeout(() => {
+  $(".flash-message").fadeOut("slow", function() { $(this).remove(); });
+}, 3000);

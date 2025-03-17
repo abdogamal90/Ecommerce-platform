@@ -83,7 +83,10 @@
             <p class="text-2xl font-bold text-indigo-600">
               $<%= number_with_precision(product.price, precision: 2) %>
             </p>
-             <%= button_to "Add to Cart", cart_items_path(product_id: product.id), 
+           <%= button_to "Add to Wishlist", wishlist_items_path(product_id: product.id),
+                method: :post, remote: true, 
+                class: "add-to-wishlist px-4 py-2 bg-gray-600 text-white font-semibold rounded-lg shadow-md hover:bg-gray-500 transition-colors duration-200"   %>
+            <%= button_to "Add to Cart", cart_items_path(product_id: product.id), 
                 method: :post, class: "px-4 py-2 bg-indigo-600 text-white font-semibold rounded-lg shadow-md hover:bg-indigo-500 transition-colors duration-200" %>
           </div>
         </div>
