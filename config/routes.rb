@@ -9,7 +9,11 @@ Rails.application.routes.draw do
   get "cart_items/create"
   get "cart_items/destroy"
   resources :products, only: [:index, :show]
-  resources :wishlist_items, only: [:create, :destroy, :show, :index]
+  resources :wishlist_items, only: [:index, :create, :destroy] do
+    collection do
+      delete :delete # Defines DELETE /wishlist_items/delete
+    end
+  end  
   root "products#index"
 
 

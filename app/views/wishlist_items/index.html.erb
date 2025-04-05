@@ -1,33 +1,50 @@
 <div class="container mx-auto px-4 py-8">
-  <h1 class="text-2xl font-bold mb-6">Wishlist</h1>
-
-  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-    <% @wishlist_items.each do |wishlist_item| %>
-      <div class="group relative bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
-        <div class="p-6">
-          <h2 class="text-2xl font-bold text-gray-900 mb-2">
-            <%= link_to wishlist_item.product.name, product_path(wishlist_item.product), 
-                class: "hover:text-indigo-600 transition-colors duration-200" %>
-          </h2>
-          
-          <p class="text-gray-600 text-base mb-4 line-clamp-2 h-12">
-            <%= wishlist_item.product.description %>
-          </p>
-          
-          <div class="flex items-center justify-between">
-            <p class="text-2xl font-bold text-indigo-600 col-start-1">
-              $<%= number_with_precision(wishlist_item.product.price, precision: 2) %>
-            </p>
-            <div class="flex space-x-4 col-start-2">
-              <%= button_to "x" , wishlist_item_path(wishlist_item), method: :delete,  data: { turbo_method: :delete},
-                class: "px-4 py-2 bg-red-600 text-white font-semibold rounded-lg shadow-md hover:bg-red-500 transition-colors duration-200" %>
-              <%= button_to "Add to Cart", cart_items_path(product_id: wishlist_item.product.id), 
-                method: :post, class: "px-4 py-2 bg-gray-600 text-white font-semibold rounded-lg shadow-md hover:bg-gray-500 transition-colors duration-200" %>
-            </div>
-            
-          </div>
-        </div>
-      </div>
+  <div class="flex justify-between items-center mb-6">
+    <h1 class="text-2xl font-bold mb-6">Wishlist</h1>
+    <% if !@wishlist_items.empty? %>
+      
+      <%= button_to "Empty Wishlist", delete_wishlist_items_path, 
+        method: :delete, 
+        data: { authenticity_token: form_authenticity_token },
+        class: "px-4 py-2 bg-red-600 text-white font-semibold rounded-lg shadow-md hover:bg-red-500 transition-colors duration-200" %>
     <% end %>
   </div>
+
+  <% if !@wishlist_items.empty? %>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+      <% @wishlist_items.each do |wishlist_item| %>
+        <div class="group relative bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
+          <div class="p-6">
+            <h2 class="text-2xl font-bold text-gray-900 mb-2">
+              <%= link_to wishlist_item.product.name, product_path(wishlist_item.product), 
+                  class: "hover:text-indigo-600 transition-colors duration-200" %>
+            </h2>
+            
+            <p class="text-gray-600 text-base mb-4 line-clamp-2 h-12">
+              <%= wishlist_item.product.description %>
+            </p>
+            
+            <div class="flex items-center justify-between">
+              <p class="text-2xl font-bold text-indigo-600 col-start-1">
+                $<%= number_with_precision(wishlist_item.product.price, precision: 2) %>
+              </p>
+              <div class="flex space-x-4 col-start-2">
+                <%= button_to "x" , wishlist_item_path(wishlist_item), method: :delete,  data: { turbo_method: :delete},
+                  class: "px-4 py-2 bg-red-600 text-white font-semibold rounded-lg shadow-md hover:bg-red-500 transition-colors duration-200" %>
+                <%= button_to "Add to Cart", cart_items_path(product_id: wishlist_item.product.id), 
+                  method: :post, class: "px-4 py-2 bg-gray-600 text-white font-semibold rounded-lg shadow-md hover:bg-gray-500 transition-colors duration-200" %>
+              </div>
+              
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  <% else %>
+    <div class="text-center">
+      <p class="text-2xl font-bold text-gray-900 mb-2">Your wishlist is empty</p>
+      <p class="text-gray-600 text-base mb-4">Add products to your wishlist by clicking the "Add to Wishlist" button on the products page.</p>
+    </div>
+  <% end %>
 </div>
