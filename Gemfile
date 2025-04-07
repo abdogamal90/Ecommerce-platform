@@ -76,7 +76,7 @@ end
 
 gem "faker", "~> 3.5"
 
-gem "tailwindcss-ruby", "~> 4.0"
+gem "tailwindcss-ruby", "~> 4.1"
 
 gem "stripe", "~> 13.4"
 gem 'will_paginate', '~> 4.0'
