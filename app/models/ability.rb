@@ -11,3 +11,4 @@ class Ability
     end
   end
 end
+# This file defines the abilities for the application using the CanCanCan gem.

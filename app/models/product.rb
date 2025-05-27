@@ -13,5 +13,11 @@ class Product < ApplicationRecord
     def add_to_wishlist(user, product)
         user.add_to_wishlist(product)
     end
-    
+
+    def self.cached_find(id)
+      Rails.cache.fetch("product:#{id}", expires_in: 12.hours) do
+        Rails.logger.info("Fetching product from DB")  # Log message to see if it's hitting the DB
+        find(id)
+      end
+    end
 end

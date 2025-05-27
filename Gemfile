@@ -80,4 +80,4 @@ gem "tailwindcss-ruby", "~> 4.0"
 
 gem "stripe", "~> 13.4"
 gem 'will_paginate', '~> 4.0'
-
+gem 'redis'
