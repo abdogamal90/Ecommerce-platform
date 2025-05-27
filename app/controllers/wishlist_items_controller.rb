@@ -20,8 +20,15 @@ class WishlistItemsController < ApplicationController
   end
 
   def destroy
-    wishlist_item = WishlistItem.find(params[:id])
+    wishlist_item = current_user.wishlist_items.find(params[:id])
+    product = wishlist_item.product
     wishlist_item.destroy
+    flash[:notice] = "#{product.name} removed from wishlist"
+
+    respond_to do |format|
+      format.html { redirect_back fallback_location: products_path, notice: flash[:notice] }
+      format.turbo_stream
+    end
   end
 
   # empty wishlist
