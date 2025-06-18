@@ -25,9 +25,6 @@ gem 'devise'
 
 gem 'cancancan'
 
-# fontawesome
-gem 'font-awesome-sass'
-
 
 # Use Active Model has_secure_password [https://guides.rubyonrails.org/active_model_basics.html#securepassword]
 # gem "bcrypt", "~> 3.1.7"
@@ -81,3 +78,12 @@ gem "tailwindcss-ruby", "~> 4.0"
 gem "stripe", "~> 13.4"
 gem 'will_paginate', '~> 4.0'
 gem 'redis'
+gem "font-awesome-sass", "~> 6.0"
+
+gem "activeadmin", "~> 3.3"
+
+gem "cssbundling-rails", "~> 1.4"
+
+gem "dartsass-rails", "~> 0.5.1"
+
+gem "kaminari", "~> 1.2"

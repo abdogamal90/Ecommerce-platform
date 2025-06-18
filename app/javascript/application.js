@@ -38,4 +38,4 @@ document.addEventListener('DOMContentLoaded', async () => {
       }
     }
   });
-});
+});import * as bootstrap from "bootstrap"

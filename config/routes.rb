@@ -1,5 +1,11 @@
 Rails.application.routes.draw do
-  devise_for :users
+  devise_for :admin_users, ActiveAdmin::Devise.config
+  ActiveAdmin.routes(self)
+  devise_for :users , controllers: {
+    registrations: 'users/registrations',
+    sessions: 'users/sessions',
+    passwords: 'users/passwords'
+  }
 
   resources :users, only: [ :index, :edit, :update, :destroy, :create, :new ]
   get "checkout/show"
@@ -15,6 +21,8 @@ Rails.application.routes.draw do
     end
   end
   root "products#index"
+
+  get 'profile', to: 'profiles#show'
 
 
   resources :cart_items, only: [ :create, :destroy ]

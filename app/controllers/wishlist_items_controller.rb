@@ -37,9 +37,8 @@ class WishlistItemsController < ApplicationController
     redirect_to wishlist_items_path, notice: "Wishlist emptied"
   end
 
-  
+
   def index
     @wishlist_items = current_user.wishlist_items
   end
-
 end

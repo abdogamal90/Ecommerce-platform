@@ -9,7 +9,7 @@
         <%= link_to "Home", root_path, class: "text-gray-700 hover:text-blue-600" %>
         <%= link_to "Cart", cart_path, class: "text-gray-700 hover:text-blue-600" %>
         <% if user_signed_in? %>
-          <%= link_to "Profile", edit_user_registration_path, class: "text-gray-700 hover:text-blue-600" %>
+          <%= link_to "Profile", profile_path, class: "text-gray-700 hover:text-blue-600" %>
           <%= link_to "Orders", orders_path, class: "text-gray-700 hover:text-blue-600" %>
           <%= link_to "Wishlist", wishlist_items_path, class: "text-gray-700 hover:text-blue-600" %>
           <% if current_user&.admin? %>
