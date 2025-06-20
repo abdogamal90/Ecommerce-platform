@@ -82,5 +82,6 @@ ENTRYPOINT ["/rails/bin/docker-entrypoint"]
 # Expose port (Railway will override with $PORT)
 EXPOSE 80
 
+
 # Start Rails server via Thrust or default
-CMD ["./bin/thrust", "./bin/rails", "server", "-b", "0.0.0.0", "-p", "${PORT:-3000}"]
+CMD bash -c 'bundle exec rails server -b 0.0.0.0 -p ${PORT:-3000}'
