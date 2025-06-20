@@ -28,6 +28,7 @@ production:
     <<: *default
     url: postgresql://postgres:HJkmohAbxBuXgysIgjrsjSwPzrpDQeJF@postgres.railway.internal:5432/railway
     database: railway
+    host: postgres.railway.internal
   cache:
     <<: *default
     database: ecommerce_platform_production_cache
