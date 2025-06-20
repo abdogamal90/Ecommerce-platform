@@ -26,8 +26,8 @@ test:
 production:
   primary:
     <<: *default
-    url: <%= ENV['DATABASE_URL'] || 'postgres://localhost/ecommerce_platform_production' %>
-    database: ecommerce_platform_production
+    url: postgresql://postgres:HJkmohAbxBuXgysIgjrsjSwPzrpDQeJF@postgres.railway.internal:5432/railway
+    database: railway
   cache:
     <<: *default
     database: ecommerce_platform_production_cache
