@@ -24,11 +24,16 @@ test:
 # Store production database in the storage/ directory, which by default
 # is mounted as a persistent Docker volume in config/deploy.yml.
 production:
+  adapter: postgresql
+  encoding: unicode
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  timeout: 5000
+  url: <%= ENV['DATABASE_URL'] || 'postgres://localhost/ecommerce_platform_production
   primary:
     <<: *default
-    url: postgresql://postgres:HJkmohAbxBuXgysIgjrsjSwPzrpDQeJF@postgres.railway.internal:5432/railway
-    database: railway
-    host: postgres.railway.internal
+    url: <%= ENV['DATABASE_URL'] || 'postgres://localhost/ecommerce_platform_production' %>
+    database: ecommerce_platform_production
+    host: <%= ENV['DB_HOST'] || 'localhost' %>
   cache:
     <<: *default
     database: ecommerce_platform_production_cache
